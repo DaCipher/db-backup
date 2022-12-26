@@ -52,11 +52,12 @@ class DatabaseController
    */
   public function dumpDB()
   {
-    $sql_dump = "mysqldump -h $this->host -u $this->username $this->db > $this->backup_file";
+
+    $sql_dump = "mysqldump -h $this->host -u $this->username -p$this->password $this->db > $this->backup_file";
 
     /*
-     $sql_dump = "mysqldump -h $this->host -u $this->username -p$this->password $this->db > $this->backup_file";
-Uncomment if your DB user has empty password
+    $sql_dump = "mysqldump -h $this->host -u $this->username $this->db > $this->backup_file";
+// Uncomment if your DB user has empty password
     */
 
     try {
