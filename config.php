@@ -9,7 +9,7 @@ return (object) array(
   'db_name' => 'test_db',
   'db_user' => 'test_db_user',
   'db_password' => 'test_db_password',
-  'dump_path' => '/test_dump_path',
+  'dump_path' => '/test_dump_path', // Use full path
   'db_filename' => "test_db_filename.sql",
 
   //Mail Configuration
