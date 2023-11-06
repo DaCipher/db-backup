@@ -3,8 +3,8 @@
 use App\Controllers\Backup;
 
 
-$config = include '../config.php';
+$config = include __DIR__.'/../config.php';
 // Use full hosting path
-include "$config->root_dir.vendor/autoload.php";
+include $config->root_dir."vendor/autoload.php";
 
 new Backup($config);

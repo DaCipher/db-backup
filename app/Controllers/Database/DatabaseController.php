@@ -48,10 +48,10 @@ class DatabaseController
 
   public function dumpDB()
   {
-    $sql_dump = "msqldump -h $this->host -u $this->username -p $this->password $this->db > $this->backup_file";
+    $sql_dump = "mysqldump --host={$this->host} --user={$this->username} --password={$this->password} {$this->db} > $this->backup_file";
 
     try {
-      $this->connectDB()->exec($sql_dump);
+    exec($sql_dump);
       return true;
     } catch (\PDOException $e) {
       echo $e->getMessage();
