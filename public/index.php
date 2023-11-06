@@ -2,9 +2,9 @@
 
 use App\Controllers\Backup;
 
-// Use full hosting path
-include "../vendor/autoload.php";
-$config = include '../config.php';
 
+$config = include '../config.php';
+// Use full hosting path
+include "$config->root_dir.vendor/autoload.php";
 
 new Backup($config);
