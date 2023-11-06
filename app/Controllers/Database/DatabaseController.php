@@ -62,7 +62,7 @@ class DatabaseController
 
     try {
       system($sql_dump);
-      echo "$this->db has been dumped to $this->backup_file\n";
+      echo "Database: $this->db has been dumped to $this->backup_file\n";
       return true;
     } catch (\PDOException $e) {
       echo $e->getMessage();
