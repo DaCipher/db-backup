@@ -13,6 +13,7 @@ class DatabaseController
   public string $password;
   public string $db;
   public string $backup_file;
+  public object $DBConn;
 
   /**
    * Initializes the database controller using database configuration files.
@@ -32,26 +33,36 @@ class DatabaseController
 
   /**
    * Connect to Database Server.
-   * @return Object $conn Database connection object.
+   * @return null
    */
 
   public function connectDB()
   {
 
     try {
-      $conn = new PDO("mysql:host=$this->host;dbname=$this->db", $this->username, $this->password);
-      return $conn;
+     new PDO("mysql:host=$this->host;dbname=$this->db", $this->username, $this->password);
     } catch (\PDOException $e) {
       echo $e->getMessage();
     }
   }
-
+  /**
+   * Dump Database backup filee
+   *
+   * @return void
+   */
   public function dumpDB()
   {
-    $sql_dump = "mysqldump --host={$this->host} --user={$this->username} --password={$this->password} {$this->db} > $this->backup_file";
+
+    $sql_dump = "mysqldump -h $this->host -u $this->username -p$this->password $this->db > $this->backup_file";
+
+    /* // Uncomment if your DB user has empty password
+    $sql_dump = "mysqldump -h $this->host -u $this->username $this->db > $this->backup_file";
+
+    */
 
     try {
-    exec($sql_dump);
+      system($sql_dump);
+      echo "$this->db has been dumped to $this->backup_file\n";
       return true;
     } catch (\PDOException $e) {
       echo $e->getMessage();
