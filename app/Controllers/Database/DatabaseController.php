@@ -51,7 +51,7 @@ class DatabaseController
     $sql_dump = "msqldump -h $this->host -u $this->username -p $this->password $this->db > $this->backup_file";
 
     try {
-      $this->connectDB->exec($sql_dump);
+      $this->connectDB()->exec($sql_dump);
       return true;
     } catch (\PDOException $e) {
       echo $e->getMessage();
