@@ -145,7 +145,7 @@ class EmailController
     try {
 
       $this->mail->send();
-      echo "Email sent successfully";
+      echo "Email sent successfully\n";
       return true;
     } catch (Exception $e) {
       echo $this->mail->ErrorInfo;
