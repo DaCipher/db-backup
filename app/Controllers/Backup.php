@@ -31,6 +31,7 @@ class Backup
     ]);
 
     $db_dump->dumpDB();
+    $this->SendDBFile();
   }
 
   public function SendDBFile()
