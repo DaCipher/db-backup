@@ -5,14 +5,14 @@ return (object) array(
   'date' => date('Y-m-d'),
 
   // Root Dir
-  'root_dir' => "/", // Use full dir path
+  'root_dir' => "/", // Use full dir path with traing slash
 
   // DB Configuration
   'db_host' => 'localhost',
   'db_name' => 'test_db',
   'db_user' => 'test_db_user',
   'db_password' => 'test_db_password',
-  'dump_path' => '/test_dump_path', // Use full dir path
+  'dump_path' => '/test_dump_path', // Use full dir path with trailing slash
   'db_filename' => "test_db_filename.sql",
 
   //Mail Configuration
