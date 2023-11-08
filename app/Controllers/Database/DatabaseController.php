@@ -12,6 +12,7 @@ class DatabaseController
   public string $username;
   public string $password;
   public string $db;
+  public string $dump_path;
   public string $backup_file;
   public object $DBConn;
 
@@ -27,7 +28,8 @@ class DatabaseController
     $this->username = $db['username'];
     $this->password = $db['password'];
     $this->db = $db['database'];
-    $this->backup_file = $db['path'] . DIRECTORY_SEPARATOR . $db['date'] . "_" . $db['filename'];
+    $this->dump_path = $db['path'];
+    $this->backup_file = $this->dump_path . DIRECTORY_SEPARATOR . $db['date'] . "_" . $db['filename'];
     $this->connectDB();
   }
 
@@ -55,6 +57,11 @@ class DatabaseController
    */
   public function dumpDB()
   {
+
+    // Check if backup folder exists
+    if (!is_dir($this->dump_path)) {
+      mkdir($this->dump_path);
+    }
 
     $sql_dump = "mysqldump -h $this->host -u $this->username -p$this->password $this->db > $this->backup_file";
 
