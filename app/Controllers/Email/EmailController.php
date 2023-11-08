@@ -149,7 +149,7 @@ class EmailController
       return true;
     } catch (Exception $e) {
       echo $this->mail->ErrorInfo;
-      return false;
+      exit;
     }
   }
 }
