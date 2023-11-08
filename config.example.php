@@ -15,6 +15,9 @@ return (object) array(
   'dump_path' => '/test_dump_path', // Use full dir path without trailing slash
   'db_filename' => "test_db_filename.sql",
 
+  // Database dump file retention | set to true if you want dump files to be stored on the server
+  'db_dump_retention' => false,
+
   //Mail Configuration
   'mail_host' => 'host.com',
   'mail_username' => 'test_email_user',

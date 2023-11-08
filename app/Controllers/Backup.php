@@ -40,12 +40,17 @@ class Backup
   public function SendDBFile()
   {
     $mail = new EmailController($this->config);
-
+    $db_dump_file = $this->config->dump_path . DIRECTORY_SEPARATOR . $this->config->date . "_" . $this->config->db_filename;
     $mail->sender([$this->config->mail_sender, $this->config->mail_sender_name])
       ->receiver([$this->config->mail_receiver, $this->config->mail_reciever_name])
       ->subject($this->config->mail_subject)
-      ->attachment([$this->config->dump_path . DIRECTORY_SEPARATOR . $this->config->date . "_" . $this->config->db_filename, $this->config->db_filename])
+      ->attachment([$db_dump_file, $this->config->db_filename])
       ->body("Database backup for " . $this->config->date)
       ->send();
+
+    // Check if db dumb is enabled
+    if (!$this->config->db_dump_retention) {
+      unlink($db_dump_file);
+    }
   }
 }
