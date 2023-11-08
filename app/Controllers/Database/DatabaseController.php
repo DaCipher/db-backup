@@ -61,6 +61,7 @@ class DatabaseController
     // Check if backup folder exists
     if (!is_dir($this->dump_path)) {
       mkdir($this->dump_path);
+      echo "Success: " . $this->dump_path . "directory created.";
     }
 
     $sql_dump = "mysqldump -h $this->host -u $this->username -p$this->password $this->db > $this->backup_file";
