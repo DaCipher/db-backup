@@ -54,21 +54,20 @@ class DatabaseController
   public function dumpDB()
   {
 
-    if ($sql_dump = "mysqldump -h $this->host -u $this->username -p$this->password $this->db > $this->backup_file") {
+    $sql_dump = "mysqldump -h $this->host -u $this->username -p$this->password $this->db > $this->backup_file";
 
-      /* // Uncomment if your DB user has empty password
+    /* // Uncomment if your DB user has empty password
     $sql_dump = "mysqldump -h $this->host -u $this->username $this->db > $this->backup_file";
 
     */
 
-      try {
-        system($sql_dump);
-        echo "Database: $this->db has been dumped to $this->backup_file\n";
-        return true;
-      } catch (\PDOException $e) {
-        echo $e->getMessage();
-        return false;
-      }
+    try {
+      system($sql_dump);
+      echo "Database: $this->db has been dumped to $this->backup_file\n";
+      return true;
+    } catch (\PDOException $e) {
+      echo $e->getMessage();
+      return false;
     }
   }
 }
