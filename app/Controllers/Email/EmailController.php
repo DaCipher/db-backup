@@ -148,8 +148,11 @@ class EmailController
       echo "Email sent successfully\n";
       return true;
     } catch (Exception $e) {
+      // For CLI App debugging
       echo $this->mail->ErrorInfo . "\n";
-      exit;
+
+      // For error logging
+      throw new Exception("Unable to send mail: " . $this->mail->ErrorInfo . "\n");
     }
   }
 }

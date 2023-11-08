@@ -42,8 +42,10 @@ class DatabaseController
     try {
       new PDO("mysql:host=$this->host;dbname=$this->db", $this->username, $this->password);
     } catch (\PDOException $e) {
+      // For CLI App degugging
       echo "Database connection failed: " . $e->getMessage() . "\n";
-      exit;
+      // For Error Logging.
+      throw new  Exception("Database connection failed: {$e->getMessage()}" . "\n");
     }
   }
   /**
