@@ -40,7 +40,7 @@ class DatabaseController
   {
 
     try {
-     new PDO("mysql:host=$this->host;dbname=$this->db", $this->username, $this->password);
+      new PDO("mysql:host=$this->host;dbname=$this->db", $this->username, $this->password);
     } catch (\PDOException $e) {
       echo $e->getMessage();
     }
@@ -66,6 +66,7 @@ class DatabaseController
       return true;
     } catch (\PDOException $e) {
       echo $e->getMessage();
+      return false;
     }
   }
 }
