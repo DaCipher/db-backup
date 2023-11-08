@@ -32,6 +32,16 @@ class Backup
 
     if ($db_dump->dumpDB()) {
       $this->SendDBFile();
+
+
+      // Check if db dumb retention is enabled
+      if (!$this->config->db_dump_retention) {
+
+        // Delete all db dump files
+        array_map('unlink', array_filter(glob($this->config->dump_path . "/*"), 'is_file'));
+      }
+
+
       return;
     }
     die('Critcal Error: 500');
@@ -47,10 +57,5 @@ class Backup
       ->attachment([$db_dump_file, $this->config->db_filename])
       ->body("Database backup for " . $this->config->date)
       ->send();
-
-    // Check if db dumb is enabled
-    if (!$this->config->db_dump_retention) {
-      unlink($db_dump_file);
-    }
   }
 }
