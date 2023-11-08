@@ -33,7 +33,7 @@ class DatabaseController
 
   /**
    * Connect to Database Server.
-   * @return null
+   * @throws Exception if the database connection fails
    */
 
   public function connectDB()
@@ -42,12 +42,11 @@ class DatabaseController
     try {
       new PDO("mysql:host=$this->host;dbname=$this->db", $this->username, $this->password);
     } catch (\PDOException $e) {
-      echo $e->getMessage();
-      return;
+      throw new Exception($e->getMessage());
     }
   }
   /**
-   * Dump Database backup filee
+   * Dump Database backup file
    *
    * @return void
    */
@@ -66,7 +65,7 @@ class DatabaseController
       echo "Database: $this->db has been dumped to $this->backup_file\n";
       return true;
     } catch (\PDOException $e) {
-      echo $e->getMessage();
+      echo "Database dump failed: " . $e->getMessage();
       return false;
     }
   }
