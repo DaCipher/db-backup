@@ -30,8 +30,11 @@ class Backup
       'date' => $this->config->date
     ]);
 
-    $db_dump->dumpDB();
-    $this->SendDBFile();
+    if ($db_dump->dumpDB()) {
+      $this->SendDBFile();
+      return;
+    }
+    die('Critcal Error: 500');
   }
 
   public function SendDBFile()
