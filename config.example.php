@@ -12,7 +12,7 @@ return (object) array(
   'db_name' => 'test_db',
   'db_user' => 'test_db_user',
   'db_password' => 'test_db_password',
-  'dump_path' => '/test_dump_path', // Use full dir path with trailing slash
+  'dump_path' => '/test_dump_path', // Use full dir path without trailing slash
   'db_filename' => "test_db_filename.sql",
 
   //Mail Configuration
