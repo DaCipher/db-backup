@@ -29,7 +29,7 @@ class DatabaseController
     $this->password = $db['password'];
     $this->db = $db['database'];
     $this->dump_path = $db['path'];
-    $this->backup_file = $this->dump_path . DIRECTORY_SEPARATOR . $db['filename'] . "_" . $db['date'];
+    $this->backup_file = $this->dump_path . DIRECTORY_SEPARATOR . $db['filename'] . "_" . $db['date'] . "_" . $db['extension'];
     $this->connectDB();
   }
 

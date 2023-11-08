@@ -14,7 +14,6 @@ class Backup
   public function __construct(Object $config)
   {
     $this->config = $config;
-
     $this->BackupDB();
   }
 
@@ -50,7 +49,7 @@ class Backup
   public function SendDBFile()
   {
     $mail = new EmailController($this->config);
-    $db_dump_file = $this->config->dump_path . DIRECTORY_SEPARATOR .  $this->config->db_filename . "_" . $this->config->date;
+    $db_dump_file = $this->config->dump_path . DIRECTORY_SEPARATOR .  $this->config->db_filename . "_" . $this->config->date . $this->config->extension;
     $mail->sender([$this->config->mail_sender, $this->config->mail_sender_name])
       ->receiver([$this->config->mail_receiver, $this->config->mail_reciever_name])
       ->subject($this->config->mail_subject)
