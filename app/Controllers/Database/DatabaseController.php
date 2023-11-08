@@ -42,7 +42,8 @@ class DatabaseController
     try {
       new PDO("mysql:host=$this->host;dbname=$this->db", $this->username, $this->password);
     } catch (\PDOException $e) {
-      throw new Exception($e->getMessage());
+      echo "Database connection failed: " . $e->getMessage();
+      return;
     }
   }
   /**
