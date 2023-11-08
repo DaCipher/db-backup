@@ -42,7 +42,7 @@ class DatabaseController
     try {
       new PDO("mysql:host=$this->host;dbname=$this->db", $this->username, $this->password);
     } catch (\PDOException $e) {
-      echo "Database connection failed: " . $e->getMessage();
+      echo "Database connection failed: " . $e->getMessage() . "\n";
       exit;
     }
   }
@@ -66,7 +66,7 @@ class DatabaseController
       echo "Database: $this->db has been dumped to $this->backup_file\n";
       return true;
     } catch (\PDOException $e) {
-      echo "Database dump failed: " . $e->getMessage();
+      echo "Database dump failed: " . $e->getMessage() . "\n";
       exit;
     }
   }
