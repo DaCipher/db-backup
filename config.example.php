@@ -2,7 +2,7 @@
 
 return (object) array(
 
-  'date' => date('Y-m-d'),
+  'date' => date('Y-m-d H:i:s'),
 
   // Root Dir
   'root_dir' => "/", // Use full dir path with traing slash
@@ -13,8 +13,8 @@ return (object) array(
   'db_user' => 'test_db_user',
   'db_password' => 'test_db_password',
   'dump_path' => '/test_dump_path', // Use full dir path without trailing slash
-  'db_filename' => "test_db_filename", // do not add extension
-  'extension' => ".sql", "db dump extention/format",
+  'db_filename' => "test_db_filename_" . date('dmY') . ".sql",
+
   // Database dump file retention | set to true if you want dump files to be stored on the server
   'db_dump_retention' => false,
 

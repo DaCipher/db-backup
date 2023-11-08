@@ -26,7 +26,6 @@ class Backup
       'database' => $this->config->db_name,
       'filename' => $this->config->db_filename,
       'path' => $this->config->dump_path,
-      'date' => $this->config->date
     ]);
 
     if ($db_dump->dumpDB()) {
@@ -49,7 +48,7 @@ class Backup
   public function SendDBFile()
   {
     $mail = new EmailController($this->config);
-    $db_dump_file = $this->config->dump_path . DIRECTORY_SEPARATOR .  $this->config->db_filename . "_" . $this->config->date . $this->config->extension;
+    $db_dump_file = $this->config->dump_path . DIRECTORY_SEPARATOR .  $this->config->db_filename;
     $mail->sender([$this->config->mail_sender, $this->config->mail_sender_name])
       ->receiver([$this->config->mail_receiver, $this->config->mail_reciever_name])
       ->subject($this->config->mail_subject)
